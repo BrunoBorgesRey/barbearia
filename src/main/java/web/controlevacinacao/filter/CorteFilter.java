@@ -44,7 +44,7 @@ public class CorteFilter {
         this.dataCorte = dataCorte;
     }
 
-    public LocalDate getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 

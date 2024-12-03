@@ -1,4 +1,4 @@
-package web.controlevacinacao.repository.queries.vacina;
+package web.controlevacinacao.repository.queries.cliente;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

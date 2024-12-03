@@ -1,4 +1,4 @@
-package web.controlevacinacao.repository.queries.vacina;
+package web.controlevacinacao.repository.queries.cliente;
 
 import java.util.ArrayList;
 import java.util.List;
