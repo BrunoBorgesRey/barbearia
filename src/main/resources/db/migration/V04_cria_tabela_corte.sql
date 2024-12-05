@@ -4,7 +4,7 @@ CREATE TABLE public.corte
     barbeador text,
     corte text,
     data_corte date,
-    hora hour,
+    hora time,
     situacao boolean,
     status text DEFAULT 'ATIVO',
     PRIMARY KEY (codigo)
