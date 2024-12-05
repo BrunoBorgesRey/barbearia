@@ -11,7 +11,7 @@
       <h1 class="text-3xl mt-10 ml-10">Você tem certeza que quer remover o cliente?</h1>
       <h2 th:text="'Código: ' + ${cliente.codigo}" class="text-xl mt-10 ml-10"></h2>
       <h2 th:text="'Nome: ' + ${cliente.nome}" class="text-xl mt-4 ml-10"></h2>
-      <h2 th:text="'Senha: ' + ${cliente.senha}" class="text-xl mt-4 ml-10"></h2>
+      <h2 th:text="'Descricao: ' + ${cliente.descricao}" class="text-xl mt-4 ml-10"></h2>
       <div class="flex mt-10 ml-10">
         <form th:hx-get="@{/clientes/pesquisar}" hx-target="#main" hx-swap="outerHTML">
           <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">Voltar</button>
@@ -19,7 +19,7 @@
         <form th:hx-post="@{/clientes/remover}" hx-target="#main" hx-swap="outerHTML" class="ml-10">
           <input type="hidden" name="codigo" th:value="${cliente.codigo}" />
           <input type="hidden" name="nome" th:value="${cliente.nome}" />
-          <input type="hidden" name="senha" th:value="${cliente.senha}" />
+          <input type="hidden" name="descricao" th:value="${cliente.descricao}" />
           <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none">Remover</button>
         </form>
       </div>

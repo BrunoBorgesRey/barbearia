@@ -4,7 +4,7 @@ public class ClienteFilter {
 
     private Long codigo;
     private String nome;
-    private String senha;
+    private String descricao;
 
     public Long getCodigo() {
         return codigo;
@@ -22,17 +22,17 @@ public class ClienteFilter {
         this.nome = nome;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     @Override
     public String toString() {
-        return "codigo: " + codigo + "\nnome: " + nome + "\nsenha: " + senha;
+        return "codigo: " + codigo + "\nnome: " + nome + "\ndescricao: " + descricao;
     }
 
 }

@@ -13,7 +13,7 @@
         <!-- Formulario -->
         <form th:hx-post="@{/clientes/nova}" hx-target="#main" hx-swap="outerHTML" th:object="${cliente}">
           <div th:replace="~{layout/fragments/forms::inputtext ('Nome', 'nome')}">...</div>
-          <div th:replace="~{layout/fragments/forms::inputtext ('Senha', 'senha')}">...</div>
+          <div th:replace="~{layout/fragments/forms::inputtext ('Descricao', 'descricao')}">...</div>
           <br />
           <button type="submit" class="py-3 px-4 inline-flex items-center mt-5 gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">Cadastrar</button>
         </form>

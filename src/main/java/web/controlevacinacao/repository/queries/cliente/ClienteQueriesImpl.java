@@ -46,9 +46,9 @@ public class ClienteQueriesImpl implements ClienteQueries {
 			predicateList.add(builder.like(builder.lower(v.<String>get("nome")),
 					"%" + filtro.getNome().toLowerCase() + "%"));
 		}
-		if (StringUtils.hasText(filtro.getSenha())) {
-			predicateList.add(builder.like(builder.lower(v.<String>get("senha")),
-					"%" + filtro.getSenha().toLowerCase() + "%"));
+		if (StringUtils.hasText(filtro.getDescricao())) {
+			predicateList.add(builder.like(builder.lower(v.<String>get("descricao")),
+					"%" + filtro.getDescricao().toLowerCase() + "%"));
 		}
 		predicateList.add(builder.equal(v.<Status>get("status"), Status.ATIVO));
 
@@ -71,9 +71,9 @@ public class ClienteQueriesImpl implements ClienteQueries {
 			predicateListTotal.add(builder.like(builder.lower(vTotal.<String>get("nome")),
 					"%" + filtro.getNome().toLowerCase() + "%"));
 		}
-		if (StringUtils.hasText(filtro.getSenha())) {
-			predicateListTotal.add(builder.like(builder.lower(vTotal.<String>get("senha")),
-					"%" + filtro.getSenha().toLowerCase() + "%"));
+		if (StringUtils.hasText(filtro.getDescricao())) {
+			predicateListTotal.add(builder.like(builder.lower(vTotal.<String>get("descricao")),
+					"%" + filtro.getDescricao().toLowerCase() + "%"));
 		}
 		predicateListTotal.add(builder.equal(vTotal.<Status>get("status"), Status.ATIVO));
 		

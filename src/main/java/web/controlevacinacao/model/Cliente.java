@@ -24,8 +24,8 @@ public class Cliente implements Serializable {
 	private Long codigo;
 	@NotBlank(message = "O nome da cliente é obrigatório")
 	private String nome;
-	@NotBlank(message = "A senha da cliente é obrigatória")
-	private String senha;
+	@NotBlank(message = "A descricao da cliente é obrigatória")
+	private String descricao;
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.ATIVO;
 
@@ -45,12 +45,12 @@ public class Cliente implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public Status getStatus() {
@@ -88,7 +88,7 @@ public class Cliente implements Serializable {
 
 	@Override
 	public String toString() {
-		return "codigo: " + codigo + "\nnome: " + nome + "\nsenha: " + senha + "\nstatus: " + status;
+		return "codigo: " + codigo + "\nnome: " + nome + "\ndescricao: " + descricao + "\nstatus: " + status;
 	}
 
 }

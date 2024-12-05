@@ -1,8 +1,8 @@
 CREATE TABLE public.corte
 (
     codigo serial NOT NULL,
+    cliente text,
     barbeador text,
-    corte text,
     data_corte date,
     hora time,
     situacao boolean,

@@ -23,6 +23,7 @@
                     <div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'nome', 'Nome', '')}"></div>
                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">CPF</th>
                     <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Nascimento</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Profissão</th>
                     <th scope="col" colspan="2" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Ações</th>
                   </tr>
                 </thead>
@@ -31,22 +32,25 @@
                     <td th:text="${barbeador.codigo}" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">John Brown</td>
                     <td th:text="${barbeador.nome}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">45</td>
                     <td th:text="${barbeador.cpf}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
-                    <td th:text="${{barbeador.dataNascimento}}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
+                    <td th:text="${{{barbeador.dataNascimento}}}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
+                    <td th:text="${barbeador.profissao}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                       <form th:hx-post="@{/barbeadors/abriralterar}" hx-target="#main" hx-swap="outerHTML">
                         <input type="hidden" name="codigo" th:value="${barbeador.codigo}" />
                         <input type="hidden" name="nome" th:value="${barbeador.nome}" />
                         <input type="hidden" name="cpf" th:value="${barbeador.cpf}" />
-                        <input type="hidden" name="dataNascimento" th:value="${{barbeador.dataNascimento}}" />
+                        <input type="hidden" name="dataNascimento" th:value="${{{barbeador.dataNascimento}}}" />
+                        <input type="hidden" name="profissao" th:value="${barbeador.profissao}" />
                         <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">Alterar</button>
                       </form>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                      <form th:hx-post="@{/barbeadors/abrirremover}" hx-target="#main" hx-swap="outerHTML">
+                      <form th:hx-post="@{/barbeadors/remover}" hx-target="#main" hx-swap="outerHTML" th:hx-confirm="${'Você vai remover a barbeador ' + barbeador.nome}">
                         <input type="hidden" name="codigo" th:value="${barbeador.codigo}" />
                         <input type="hidden" name="nome" th:value="${barbeador.nome}" />
                         <input type="hidden" name="cpf" th:value="${barbeador.cpf}" />
-                        <input type="hidden" name="dataNascimento" th:value="${{barbeador.dataNascimento}}" />
+                        <input type="hidden" name="dataNascimento" th:value="${{{barbeador.dataNascimento}}}" />
+                        <input type="hidden" name="profissao" th:value="${barbeador.profissao}" />
                         <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none">Remover</button>
                       </form>
                     </td>

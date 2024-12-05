@@ -29,12 +29,13 @@ public class Corte implements Serializable {
 	private Long codigo;
 	@NotBlank(message = "O cliente do corte é obrigatório")
 	private String cliente;
-	@NotBlank(message = "O BARBEADOR do corte é obrigatório")
+	@NotBlank(message = "O barbeador do corte é obrigatório")
 	private String barbeador;
 	@NotNull(message = "A data do corte é obrigatória")
 	@Column(name = "data_corte")
 	private LocalDate dataCorte;
-	@NotBlank(message = "A hora do corte é obrigatória")
+	@NotNull(message = "A data do corte é obrigatória")
+	@Column(name = "hora")
 	private LocalTime hora;
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.ATIVO;
