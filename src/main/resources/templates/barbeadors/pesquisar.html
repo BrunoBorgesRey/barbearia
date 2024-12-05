@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Pesquisa de Pessoas</title>
+    <title>Pesquisa de Barbeadors</title>
   </head>
   <body>
     <!-- conteudo principal -->
     <main layout:fragment="conteudo" th:fragment="formulario" id="main" class="flex flex-col w-full">
-      <h1 class="text-3xl mt-10 ml-10">Pesquisa de Vacina</h1>
+      <h1 class="text-3xl mt-10 ml-10">Pesquisa de Barbeador</h1>
       <!-- Formulario -->
-      <form th:hx-get="@{/pessoas/pesquisar}" hx-target="#main" hx-swap="outerHTML" class="w-1/2 mt-10 ml-10">
+      <form th:hx-get="@{/barbeadors/pesquisar}" hx-target="#main" hx-swap="outerHTML" class="w-1/2 mt-10 ml-10">
         <label for="codigo" class="block text-gray-700 font-medium mb-2">Código</label>
         <input type="text" id="codigo" name="codigo" class="w-full py-3 px-4 text-gray-500 border-gray-300 rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none" />
         <label for="nome" class="block text-gray-700 font-medium mb-2 mt-5">Nome</label>

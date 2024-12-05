@@ -2,7 +2,7 @@ package web.controlevacinacao.filter;
 
 import java.time.LocalDate;
 
-public class PessoaFilter {
+public class BarbeadorFilter {
 
     private Long codigo;
     private String nome;

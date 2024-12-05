@@ -1,4 +1,4 @@
-CREATE TABLE public.vacina
+CREATE TABLE public.cliente
 (
     codigo bigserial NOT NULL,
     nome text,

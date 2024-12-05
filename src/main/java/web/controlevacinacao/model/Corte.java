@@ -34,7 +34,7 @@ public class Corte implements Serializable {
 	@NotNull(message = "A data do corte é obrigatória")
 	@Column(name = "data_corte")
 	private LocalDate dataCorte;
-	@NotBlank(message = "A profissão da corte é obrigatória")
+	@NotBlank(message = "A hora do corte é obrigatória")
 	private LocalTime hora;
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.ATIVO;

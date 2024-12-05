@@ -1,4 +1,4 @@
-package web.controlevacinacao.repository.queries.pessoa;
+package web.controlevacinacao.repository.queries.barbeador;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,24 +18,24 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import web.controlevacinacao.filter.PessoaFilter;
-import web.controlevacinacao.model.Pessoa;
+import web.controlevacinacao.filter.BarbeadorFilter;
+import web.controlevacinacao.model.Barbeador;
 import web.controlevacinacao.model.Status;
 import web.controlevacinacao.repository.pagination.PaginacaoUtil;
 
-public class PessoaQueriesImpl implements PessoaQueries {
+public class BarbeadorQueriesImpl implements BarbeadorQueries {
 
-	private static final Logger logger = LoggerFactory.getLogger(PessoaQueriesImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(BarbeadorQueriesImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public Page<Pessoa> pesquisar(PessoaFilter filtro, Pageable pageable) {
+	public Page<Barbeador> pesquisar(BarbeadorFilter filtro, Pageable pageable) {
 		CriteriaBuilder builder = em.getCriteriaBuilder();
-		CriteriaQuery<Pessoa> criteriaQuery = builder.createQuery(Pessoa.class);
-		Root<Pessoa> p = criteriaQuery.from(Pessoa.class);
-		TypedQuery<Pessoa> typedQuery;
+		CriteriaQuery<Barbeador> criteriaQuery = builder.createQuery(Barbeador.class);
+		Root<Barbeador> p = criteriaQuery.from(Barbeador.class);
+		TypedQuery<Barbeador> typedQuery;
 		List<Predicate> predicateList = new ArrayList<>();
 		List<Predicate> predicateListTotal = new ArrayList<>();
 		Predicate[] predArray;
@@ -72,10 +72,10 @@ public class PessoaQueriesImpl implements PessoaQueries {
 		typedQuery = em.createQuery(criteriaQuery);
 		PaginacaoUtil.prepararIntervalo(typedQuery, pageable);
 		typedQuery.setHint("hibernate.query.passDistinctThrough", false);
-		List<Pessoa> pessoas = typedQuery.getResultList();
+		List<Barbeador> barbeadors = typedQuery.getResultList();
 		logger.info("Calculando o total de registros que o filtro retornará.");
 		CriteriaQuery<Long> criteriaQueryTotal = builder.createQuery(Long.class);
-		Root<Pessoa> pTotal = criteriaQueryTotal.from(Pessoa.class);
+		Root<Barbeador> pTotal = criteriaQueryTotal.from(Barbeador.class);
 		criteriaQueryTotal.select(builder.count(pTotal));
 		if (filtro.getCodigo() != null) {
 			predicateListTotal.add(builder.equal(pTotal.<Long>get("codigo"), filtro.getCodigo()));
@@ -106,9 +106,9 @@ public class PessoaQueriesImpl implements PessoaQueries {
 		predicateListTotal.toArray(predArrayTotal);
 		criteriaQueryTotal.where(predArrayTotal);
 		TypedQuery<Long> typedQueryTotal = em.createQuery(criteriaQueryTotal);
-		long totalPessoas = typedQueryTotal.getSingleResult();
-		logger.info("O filtro retornará {} registros.", totalPessoas);
-		Page<Pessoa> page = new PageImpl<>(pessoas, pageable, totalPessoas);
+		long totalBarbeadors = typedQueryTotal.getSingleResult();
+		logger.info("O filtro retornará {} registros.", totalBarbeadors);
+		Page<Barbeador> page = new PageImpl<>(barbeadors, pageable, totalBarbeadors);
 		return page;
 	}
 

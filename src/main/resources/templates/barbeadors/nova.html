@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Cadastro de Pessoa</title>
+    <title>Cadastro de Barbeador</title>
   </head>
   <body>
     <!-- conteudo principal -->
     <main layout:fragment="conteudo" th:fragment="formulario" id="main" class="w-full">
       <div class="m-10">
-        <h1 class="text-3xl">Cadastro de Pessoa</h1>
+        <h1 class="text-3xl">Cadastro de Barbeador</h1>
         <!-- Formulario -->
-        <form th:hx-post="@{/pessoas/nova}" hx-target="#main" hx-swap="outerHTML" th:object="${pessoa}">
+        <form th:hx-post="@{/barbeadors/nova}" hx-target="#main" hx-swap="outerHTML" th:object="${barbeador}">
           <div th:replace="~{layout/fragments/forms::inputtext ('Nome', 'nome')}">...</div>
           <div th:replace="~{layout/fragments/forms::inputtext ('CPF', 'cpf')}">...</div>
           <div th:replace="~{layout/fragments/forms::inputtext ('Nascimento', 'dataNascimento')}">...</div>

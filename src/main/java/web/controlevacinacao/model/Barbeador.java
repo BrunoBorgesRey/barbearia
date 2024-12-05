@@ -17,23 +17,23 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "pessoa")
-public class Pessoa implements Serializable {
+@Table(name = "barbeador")
+public class Barbeador implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@SequenceGenerator(name="gerador2", sequenceName="pessoa_codigo_seq", allocationSize=1)
+	@SequenceGenerator(name="gerador2", sequenceName="barbeador_codigo_seq", allocationSize=1)
 	@GeneratedValue(generator="gerador2", strategy=GenerationType.SEQUENCE)
 	private Long codigo;
-	@NotBlank(message = "O nome da pessoa é obrigatório")
+	@NotBlank(message = "O nome da barbeador é obrigatório")
 	private String nome;
-	@NotBlank(message = "O CPF da pessoa é obrigatório")
+	@NotBlank(message = "O CPF da barbeador é obrigatório")
 	private String cpf;
-	@NotNull(message = "A data de nascimento da pessoa é obrigatória")
+	@NotNull(message = "A data de nascimento da barbeador é obrigatória")
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
-	@NotBlank(message = "A profissão da pessoa é obrigatória")
+	@NotBlank(message = "A profissão da barbeador é obrigatória")
 	private String profissao;
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.ATIVO;
@@ -105,7 +105,7 @@ public class Pessoa implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoa other = (Pessoa) obj;
+		Barbeador other = (Barbeador) obj;
 		return Objects.equals(codigo, other.codigo);
 	}
 
