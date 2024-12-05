@@ -5,6 +5,7 @@ CREATE TABLE public.corte
     corte text,
     data_corte date,
     hora hour,
+    situacao boolean,
     status text DEFAULT 'ATIVO',
     PRIMARY KEY (codigo)
 );

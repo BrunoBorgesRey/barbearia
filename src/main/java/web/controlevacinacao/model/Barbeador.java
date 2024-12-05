@@ -33,8 +33,6 @@ public class Barbeador implements Serializable {
 	@NotNull(message = "A data de nascimento da barbeador é obrigatória")
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
-	@NotBlank(message = "A profissão da barbeador é obrigatória")
-	private String profissao;
 	@Enumerated(EnumType.STRING)
 	private Status status = Status.ATIVO;
 
@@ -70,13 +68,7 @@ public class Barbeador implements Serializable {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public String getProfissao() {
-		return profissao;
-	}
-
-	public void setProfissao(String profissao) {
-		this.profissao = profissao;
-	}
+	
 
 	public Status getStatus() {
 		return status;
@@ -89,7 +81,7 @@ public class Barbeador implements Serializable {
 	@Override
 	public String toString() {
 		return "codigo: " + codigo + "\\nnome: " + nome + "\\ncpf: " + cpf + "\\ndataNascimento: " + dataNascimento
-				+ "\\nprofissao: " + profissao + "\\nstatus: " + status;
+				 + "\\nstatus: " + status;
 	}
 
 	@Override

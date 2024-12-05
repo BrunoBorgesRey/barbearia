@@ -51,17 +51,9 @@ public class BarbeadorQueriesImpl implements BarbeadorQueries {
 			predicateList.add(builder.like(builder.lower(p.<String>get("cpf")),
 					"%" + filtro.getCpf().toLowerCase() + "%"));
 		}
-		if (StringUtils.hasText(filtro.getProfissao())) {
-			predicateList.add(builder.like(builder.lower(p.<String>get("profissao")),
-					"%" + filtro.getProfissao().toLowerCase() + "%"));
-		}
 		if (filtro.getNascimentoDe() != null) {
 			predicateList.add(builder.greaterThanOrEqualTo(p.<LocalDate>get("nascimento"),
 					filtro.getNascimentoDe()));
-		}
-		if (filtro.getNascimentoAte() != null) {
-			predicateList.add(builder.lessThanOrEqualTo(p.<LocalDate>get("nascimento"),
-					filtro.getNascimentoAte()));
 		}
 		predicateList.add(builder.equal(p.<Status>get("status"), Status.ATIVO));
 
@@ -88,17 +80,9 @@ public class BarbeadorQueriesImpl implements BarbeadorQueries {
 			predicateListTotal.add(builder.like(builder.lower(pTotal.<String>get("cpf")),
 					"%" + filtro.getCpf().toLowerCase() + "%"));
 		}
-		if (StringUtils.hasText(filtro.getProfissao())) {
-			predicateListTotal.add(builder.like(builder.lower(pTotal.<String>get("profissao")),
-					"%" + filtro.getProfissao().toLowerCase() + "%"));
-		}
 		if (filtro.getNascimentoDe() != null) {
 			predicateListTotal.add(builder.greaterThanOrEqualTo(pTotal.<LocalDate>get("nascimento"),
 					filtro.getNascimentoDe()));
-		}
-		if (filtro.getNascimentoAte() != null) {
-			predicateListTotal.add(builder.lessThanOrEqualTo(pTotal.<LocalDate>get("nascimento"),
-					filtro.getNascimentoAte()));
 		}
 		predicateList.add(builder.equal(pTotal.<Status>get("status"), Status.ATIVO));
 

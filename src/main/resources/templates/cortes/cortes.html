@@ -21,7 +21,7 @@
                   <tr>
                     <div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'codigo', 'Código', '')}"></div>
                     <div th:replace="~{layout/fragments/paginacao :: coluna(${pagina}, 'nome', 'Nome', '')}"></div>
-                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Senha</th>
+                    <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Hora</th>
                     <th scope="col" colspan="2" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Ações</th>
                   </tr>
                 </thead>
@@ -29,12 +29,13 @@
                   <tr th:each="corte : ${pagina.conteudo}" class="odd:bg-white even:bg-gray-100 hover:bg-gray-200">
                     <td th:text="${corte.codigo}" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">John Brown</td>
                     <td th:text="${corte.nome}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">45</td>
-                    <td th:text="${corte.senha}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
+                    <td th:text="${corte.data}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                       <form th:hx-post="@{/cortes/abriralterar}" hx-target="#main" hx-swap="outerHTML">
                         <input type="hidden" name="codigo" th:value="${corte.codigo}" />
                         <input type="hidden" name="nome" th:value="${corte.nome}" />
-                        <input type="hidden" name="senha" th:value="${corte.senha}" />
+                        <input type="hidden" name="data" th:value="${corte.data}" />
+                        <input type="hidden" name="hora" th:value="${corte.hora}" />
                         <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">Alterar</button>
                       </form>
                     </td>
@@ -43,7 +44,7 @@
                       th:hx-confirm="${'Você vai remover a corte ' + corte.nome + '!'}">
                         <input type="hidden" name="codigo" th:value="${corte.codigo}" />
                         <input type="hidden" name="nome" th:value="${corte.nome}" />
-                        <input type="hidden" name="senha" th:value="${corte.senha}" />
+                        <input type="hidden" name="hora" th:value="${corte.hora}" />
                         <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none">Remover</button>
                       </form>
                     </td>

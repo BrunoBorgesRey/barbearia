@@ -1,1 +1,1 @@
-ALTER TABLE vacina ADD COLUMN status text DEFAULT 'ATIVO';
+ALTER TABLE cliente ADD COLUMN status text DEFAULT 'ATIVO';
