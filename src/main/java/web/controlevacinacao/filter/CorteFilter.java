@@ -11,6 +11,15 @@ public class CorteFilter {
     private LocalDate dataCorte;
     private LocalTime hora;
     private String status;
+    private Boolean situacao;
+
+    public Boolean getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(Boolean situacao) {
+        this.situacao = situacao;
+    }
 
     public Long getCodigo() {
         return codigo;
