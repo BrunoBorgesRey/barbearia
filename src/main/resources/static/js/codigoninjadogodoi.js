@@ -158,3 +158,22 @@ function mostrarNotificacaoFromHTML() {
 document.body.addEventListener("htmlAtualizado", function (evt) {
   atualizarCodigoNaPagina();
 });
+
+// Para a parte de segurança funcionar com CSRF
+var csrfHeader = null;
+var csrfToken = null;
+
+function atualizarCSRF() {
+  csrfHeader = document.querySelector("input[name=csrf-header]").value;
+  csrfToken = document.querySelector("input[name=csrf-token]").value;
+}
+
+document.body.addEventListener("htmx:configRequest", (evt) => {
+  evt.detail.headers["accept"] = "text/html-partial";
+  if (evt.detail.verb !== "get") {
+    atualizarCSRF();
+    if (csrfHeader != null && csrfToken != null) {
+      evt.detail.headers[csrfHeader] = csrfToken;
+    }
+  }
+});

@@ -53,6 +53,10 @@
 		<AsyncLogger name="org.hibernate.cache" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</AsyncLogger>
+		<!-- Log Spring Security -->
+		<AsyncLogger name="org.springframework.security" level="debug" additivity="false">
+			<AppenderRef ref="Console"/>
+		</AsyncLogger>
 		<!-- Para producao - Hibernate >= 6 -->
 		<!-- <AsyncLogger name="org.hibernate" level="error" additivity="false">
 			<AppenderRef ref="File" />
