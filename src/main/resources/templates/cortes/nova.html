@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Cadastro de Corte</title>
+    <title>Agendamento de Corte</title>
   </head>
   <body>
     <!-- conteudo principal -->
     <main layout:fragment="conteudo" th:fragment="formulario" id="main" class="w-full">
       <div class="m-10">
-        <h1 class="text-3xl">Cadastro de Corte</h1>
+        <h1 class="text-3xl">Agendamento de Corte</h1>
         <!-- Formulario -->
         <form th:hx-post="@{/cortes/nova}" hx-target="#main" hx-swap="outerHTML" th:object="${corte}">
           <div th:replace="~{layout/fragments/forms::inputtext ('Cliente', 'cliente')}">...</div>

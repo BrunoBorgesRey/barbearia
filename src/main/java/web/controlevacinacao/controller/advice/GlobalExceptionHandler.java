@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -25,6 +26,12 @@ public class GlobalExceptionHandler {
         exception.printStackTrace(pw);
         logger.error("Stack trace da exceção: {}", sw.toString());
         return "error";
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    public String handleError404(HttpServletRequest request, Exception exception)   {
+        logger.warn("A URL {} foi acessada mas não existe.", request.getRequestURL());
+        return "error/404";
     }
 
 }
