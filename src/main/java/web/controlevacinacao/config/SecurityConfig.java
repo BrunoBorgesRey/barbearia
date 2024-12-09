@@ -32,7 +32,8 @@ public class SecurityConfig {
                                                 // URLs
                                                 .requestMatchers("/barbeadors/nova").hasRole("ADMIN")
                                                 .requestMatchers("/usuarios/cadastrar").hasRole("ADMIN")
-                                                // .requestMatchers("URL").hasAnyRole("ADMIN", "USUARIO")
+                                                .requestMatchers("/cortes/nova").hasAnyRole("ADMIN", "USUARIO")
+                                                .requestMatchers("/cliente/nova").hasAnyRole("ADMIN", "USUARIO")
                                                 .anyRequest().permitAll())
                                 .formLogin(form -> form
                                                 // Uma página de login customizada

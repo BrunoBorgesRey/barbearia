@@ -55,6 +55,8 @@
         </div>
         <div th:replace="~{layout/fragments/paginacao :: paginacao(${pagina})}"></div>
       </div>
+      <div th:replace="~{layout/fragments/header :: usuariologinlogout}"></div>
+      <div th:replace="~{layout/fragments/csrf :: csrf}"></div>
     </main>
     <!-- !conteudo principal -->
   </body>
