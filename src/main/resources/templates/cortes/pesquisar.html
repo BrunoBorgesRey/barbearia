@@ -28,6 +28,8 @@
         <input type="hidden" id="tipo" th:value="*{tipo}">
         <input type="hidden" id="intervalo" th:value="*{intervalo}">
       </div>
+      <div th:replace="~{layout/fragments/header :: usuariologinlogout}"></div>
+      <div th:replace="~{layout/fragments/csrf :: csrf}"></div>
     </main>
     <!-- !conteudo principal -->
   </body>

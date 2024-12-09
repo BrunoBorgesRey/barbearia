@@ -1,5 +1,7 @@
 package web.controlevacinacao.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -14,16 +16,25 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import io.github.wimdeblauwe.htmx.spring.boot.mvc.HtmxLocation;
 import io.github.wimdeblauwe.htmx.spring.boot.mvc.HtmxResponse;
 import io.github.wimdeblauwe.htmx.spring.boot.mvc.HxRequest;
+import io.github.wimdeblauwe.htmx.spring.boot.mvc.HxTriggerAfterSwap;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import web.controlevacinacao.filter.CorteFilter;
 import web.controlevacinacao.model.Corte;
+import web.controlevacinacao.model.Barbeador;
+import web.controlevacinacao.model.Cliente;
 import web.controlevacinacao.model.Status;
+import web.controlevacinacao.model.Corte;
+import web.controlevacinacao.notificacao.NotificacaoSweetAlert2;
+import web.controlevacinacao.notificacao.TipoNotificaoSweetAlert2;
 import web.controlevacinacao.pagination.PageWrapper;
+import web.controlevacinacao.repository.BarbeadorRepository;
+import web.controlevacinacao.repository.ClienteRepository;
 import web.controlevacinacao.repository.CorteRepository;
 import web.controlevacinacao.service.CorteService;
 
@@ -34,10 +45,15 @@ public class CorteController {
 
     private CorteService corteService;
     private CorteRepository corteRepository;
+    private BarbeadorRepository barbeadorRepository;
+    private ClienteRepository clienteRepository;
 
-     public CorteController(CorteRepository corteRepository, CorteService corteService) {
+     public CorteController(CorteRepository corteRepository, CorteService corteService, BarbeadorRepository barbeadorRepository
+     , ClienteRepository clienteRepository) {
         this.corteRepository = corteRepository;
         this.corteService = corteService;
+        this.barbeadorRepository = barbeadorRepository;
+        this.clienteRepository = clienteRepository;
     }
 
     @GetMapping("/nova")
@@ -216,4 +232,54 @@ public class CorteController {
         model.addAttribute("mensagem", "Corte removida com sucesso");
         return "mensagem :: texto";
     }
+
+    @GetMapping("/cadastrar")
+	@HxRequest
+	@HxTriggerAfterSwap("htmlAtualizado")
+	public String abrirCadastroCorte(Corte corte, Model model) {
+		List<Barbeador> barbas = barbeadorRepository.findAll();
+		model.addAttribute("todosBarbeadores", barbas);
+
+        List<Cliente> clientes = clienteRepository.findAll();
+		model.addAttribute("todosClientes", clientes);
+		return "cortes/cadastrar :: formulario";
+	}
+	
+	@PostMapping("/cadastrar")
+	@HxRequest
+	@HxTriggerAfterSwap("htmlAtualizado")
+	public String cadastrarNovoCorte(@Valid Corte corte, BindingResult resultado, Model model, RedirectAttributes redirectAttributes) {
+		if (resultado.hasErrors()) {
+			logger.info("O corte recebido para cadastrar não é válido.");
+			logger.info("Erros encontrados:");
+			for (FieldError erro : resultado.getFieldErrors()) {
+				logger.info("{}", erro);
+			}
+			List<Barbeador> barbas = barbeadorRepository.findAll();
+			model.addAttribute("todosBarbeadores", barbas);
+            List<Cliente> clientes = clienteRepository.findAll();
+            model.addAttribute("todosClientes", clientes);
+			return "cortes/cadastrar :: formulario";
+		} else {
+			
+			corteService.salvar(corte);
+			redirectAttributes.addAttribute("mensagem", "Agendamento de Corte efetuado com sucesso.");
+			return "redirect:/cortes/cadastrosucesso";
+		}
+	}
+	
+	@GetMapping("/cadastrosucesso")
+	@HxRequest
+	@HxTriggerAfterSwap("htmlAtualizado") 
+	public String mostrarCadastroSucesso(String mensagem, Corte corte, Model model) {
+		List<Barbeador> barbas = barbeadorRepository.findAll();
+		model.addAttribute("todosBarbeadores", barbas);
+        List<Cliente> clientes = clienteRepository.findAll();
+		model.addAttribute("todosClientes", clientes);
+		if (mensagem != null && !mensagem.isEmpty()) {
+            model.addAttribute("notificacao", new NotificacaoSweetAlert2(mensagem,
+                    TipoNotificaoSweetAlert2.SUCCESS, 4000));
+        }
+		return "cortes/cadastrar :: formulario";
+	}
 }

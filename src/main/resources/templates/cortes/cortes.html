@@ -32,14 +32,14 @@
                     <td th:text="${corte.codigo}" class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">John Brown</td>
                     <td th:text="${corte.cliente}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">45</td>
                     <td th:text="${corte.barbeador}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">45</td>
-                    <td th:text="${corte.dataCorte}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
+                    <td th:text="${{corte.dataCorte}}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
                     <td th:text="${corte.hora}" class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                       <form th:hx-post="@{/cortes/abriralterar}" hx-target="#main" hx-swap="outerHTML">
                         <input type="hidden" name="codigo" th:value="${corte.codigo}" />
                         <input type="hidden" name="cliente" th:value="${corte.cliente}" />
                         <input type="hidden" name="barbeador" th:value="${corte.barbeador}" />
-                        <input type="hidden" name="data" th:value="${corte.dataCorte}" />
+                        <input type="hidden" name="dataCorte" th:value="${{corte.dataCorte}}" />
                         <input type="hidden" name="hora" th:value="${corte.hora}" />
                         <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none">Alterar</button>
                       </form>
@@ -61,6 +61,8 @@
         </div>
         <div th:replace="~{layout/fragments/paginacao :: paginacao(${pagina})}"></div>
       </div>
+      <div th:replace="~{layout/fragments/header :: usuariologinlogout}"></div>
+      <div th:replace="~{layout/fragments/csrf :: csrf}"></div>
     </main>
     <!-- !conteudo principal -->
   </body>

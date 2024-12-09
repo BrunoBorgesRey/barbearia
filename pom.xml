@@ -156,6 +156,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+		<!-- Adiciona a dependência para gerar PDF-->
+		<dependency>
+		<groupId>org.xhtmlrenderer</groupId>
+		<artifactId>flying-saucer-pdf</artifactId>
+		<version>9.5.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
